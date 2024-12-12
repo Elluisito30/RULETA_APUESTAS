@@ -2,7 +2,7 @@ package entidades;
 
 public class Ficha {
     private int valor;
-    private String color; // Opcional: si las fichas tienen color
+    private String color; 
 
     public Ficha(int valor, String color) {
         this.valor = valor;
@@ -23,10 +23,5 @@ public class Ficha {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "Ficha {valor=" + valor + ", color='" + color + "'}";
     }
 }
