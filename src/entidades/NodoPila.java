@@ -32,6 +32,4 @@ public class NodoPila<T> {
     public void setSiguiente(NodoPila<T> siguiente) {
         this.siguiente = siguiente;
     }
-    
-    
 }
