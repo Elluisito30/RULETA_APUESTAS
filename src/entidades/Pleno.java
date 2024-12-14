@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entidades;
 
-/**
- *
- * @author jerss
- */
 public class Pleno {
     private int numeroApostado; // Número seleccionado para realizar la apuesta
     private int pagoPorAcierto = 35; // Es 35 veces el valor apostado.
