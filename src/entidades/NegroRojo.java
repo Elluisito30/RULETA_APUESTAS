@@ -1,59 +1,52 @@
 package entidades;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class NegroRojo {
+    private String colorApuesta;
+    private Ficha ficha;
+    
+    private static final List<Integer> N_NEGROS = Arrays.asList(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
+    private static final List<Integer> N_ROJOS = Arrays.asList(1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36);
 
-    private static final Set<Integer> NUMEROS_ROJOS = new HashSet<>();
-    private static final Set<Integer> NUMEROS_NEGROS = new HashSet<>();
-    private String colorApostado; //"rojo" o "negro, o "ROJO" o "NEGRO"
-    private int pagoPorAcierto = 1;
+    public NegroRojo(String colorApuesta, Ficha ficha) {
+        this.colorApuesta = colorApuesta.toLowerCase();
+        this.ficha = ficha;
+    }
 
-    static {
-        int[] numerosRojos = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
-        int[] numerosNegros = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35};
+    public String getColorApuesta() {
+        return colorApuesta;
+    }
 
-        for (int num : numerosRojos) {
-            NUMEROS_ROJOS.add(num);
+    public void setColorApuesta(String colorApuesta) {
+        this.colorApuesta = colorApuesta;
+    }
+
+    public Ficha getFicha() {
+        return ficha;
+    }
+
+    public void setFicha(Ficha ficha) {
+        this.ficha = ficha;
+    }
+    
+    public boolean esGanador(ListaNumerosGanadores numerosGanadores){
+        for (int numero : numerosGanadores.obtenerNumerosGanadores()) {
+            if (colorApuesta.equals("negro") && N_NEGROS.contains(numero)) {
+                return true;
+            }
+            
+            if (colorApuesta.equals("rojo") && N_ROJOS.contains(numero)) {
+                return true;
+            }
         }
-        for (int num : numerosNegros) {
-            NUMEROS_NEGROS.add(num);
-        }
+        return false;
     }
-
-    public NegroRojo(String colorApostado) {
-        if (!colorApostado.equalsIgnoreCase("rojo") && !colorApostado.equalsIgnoreCase("negro")) {
-            throw new IllegalArgumentException("El color apostado debe ser 'rojo' o 'negro'.");
-        }
-        this.colorApostado = colorApostado.toLowerCase();
-    }
-
-    public String getColorApostado() {
-        return colorApostado;
-    }
-
-    public void setColorApostado(String colorApostado) {
-        if (!colorApostado.equalsIgnoreCase("rojo") && !colorApostado.equalsIgnoreCase("negro")) {
-            throw new IllegalArgumentException("El color apostado debe ser 'rojo' o 'negro'.");
-        }
-        this.colorApostado = colorApostado.toLowerCase();
-    }
-
-    public boolean verificarApuesta(int numeroGanador) {
-        if (colorApostado.equals("rojo")) {
-            return NUMEROS_ROJOS.contains(numeroGanador);
-        } else {
-            return NUMEROS_NEGROS.contains(numeroGanador);
-        }
-    }
-
-    public int calcularGanancia(int montoApostado) {
-        return montoApostado * pagoPorAcierto;
-    }
-
-    @Override
-    public String toString() {
-        return "Apuesta al color: " + colorApostado;
+    
+    public int calcularGanancia(){
+        return ficha.getValor()*2;
     }
 }

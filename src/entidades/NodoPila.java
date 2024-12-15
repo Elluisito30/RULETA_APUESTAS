@@ -9,27 +9,27 @@ package entidades;
  * @author jerss
  */
 public class NodoPila<T> {
-    private T elemento;
-    private NodoPila<T> siguiente;
+    private T info;
+    private NodoPila<T> sgte;
 
-    public NodoPila(T elemento, NodoPila<T> siguiente) {
-        this.elemento = elemento;
-        this.siguiente = siguiente;
+    public NodoPila(T info) {
+        this.info = info;
+        this.sgte = null;
     }
 
-    public T getElemento() {
-        return elemento;
+    public T getInfo() {
+        return info;
     }
 
-    public void setElemento(T elemento) {
-        this.elemento = elemento;
+    public void setInfo(T info) {
+        this.info = info;
     }
 
-    public NodoPila<T> getSiguiente() {
-        return siguiente;
+    public NodoPila<T> getSgte() {
+        return sgte;
     }
 
-    public void setSiguiente(NodoPila<T> siguiente) {
-        this.siguiente = siguiente;
+    public void setSgte(NodoPila<T> sgte) {
+        this.sgte = sgte;
     }
 }

@@ -1,44 +1,49 @@
 package entidades;
 
 import java.util.EmptyStackException;
+import javax.swing.DefaultListModel;
 
 public class PilaGenerica<T> {
-    private NodoPila<T> cima;
-    private int tamaño;
+
+    private NodoPila<T> L;
 
     public PilaGenerica() {
-        this.cima = null;
-        this.tamaño = 0;
+        this.L = null;
     }
-    
-    public boolean estaVacia() {
-        return cima == null;
+
+    public boolean esVacia() {
+        return L == null;
     }
-    
-    public int getTamaño() {
-        return tamaño;
+
+    public void push(T x) {
+        NodoPila<T> nuevo = new NodoPila(x);
+        nuevo.setSgte(L);
+        L = nuevo;
     }
-    
-    public void apilar(T elemento) {
-        NodoPila<T> nuevoNodo = new NodoPila<>(elemento, cima);
-        cima = nuevoNodo;
-        tamaño++;
+
+    public T pop() {
+        T x;
+        x = L.getInfo();
+        L = L.getSgte();
+        return x;
     }
-    
-    public T desapilar() {
-        if (estaVacia()) {
-            throw new EmptyStackException();
+
+    public T top() {
+        return L.getInfo();
+    }
+
+    public void clear() {
+        while (L != null) {
+            L = L.getSgte();
         }
-        T elemento = cima.getElemento();
-        cima = cima.getSiguiente();
-        tamaño--;
-        return elemento;
     }
-    
-    public T cima() {
-        if (estaVacia()) {
-            throw new EmptyStackException();
+
+    public void mostrar(DefaultListModel modelo) {
+        NodoPila p = L;
+        modelo.removeAllElements();
+        while (p != null) {
+            modelo.addElement(p.getInfo());
+            p = p.getSgte();
         }
-        return cima.getElemento();
     }
 }
