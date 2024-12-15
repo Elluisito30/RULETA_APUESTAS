@@ -1,6 +1,5 @@
 package entidades;
 
-import java.util.EmptyStackException;
 import javax.swing.DefaultListModel;
 
 public class PilaGenerica<T> {
